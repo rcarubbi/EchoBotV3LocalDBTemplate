@@ -12,7 +12,7 @@ namespace EchoBotV3.State
     {
         public static readonly object KeyDataStore = new object();
 
-        private readonly Assembly assembly;
+      
         public SqlBotDataStoreModule(Assembly assembly)
         {
            
