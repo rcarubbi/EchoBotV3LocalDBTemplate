@@ -134,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BotOverrides\Autofac\DefaultExceptionMessageOverrideModule.cs" />
+    <Compile Include="BotOverrides\PostUnhandledExceptionToUser.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,6 +150,7 @@
     <Compile Include="State\SqlBotDataContext.cs" />
     <Compile Include="State\SqlBotDataContextFactory.cs" />
     <Compile Include="State\SqlBotDataEntity.cs" />
+    <Compile Include="State\SqlBotDataStoreModule.cs" />
     <Compile Include="State\SqlServerBotDataStore.cs" />
   </ItemGroup>
   <ItemGroup>
