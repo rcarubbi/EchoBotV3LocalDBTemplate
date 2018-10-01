@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -18,6 +19,7 @@ namespace EchoBotV3
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                await TypingActivityAsync(activity);
                 await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
             }
             else
@@ -26,6 +28,14 @@ namespace EchoBotV3
             }
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
+        }
+
+        public static async Task TypingActivityAsync(Activity activity)
+        {
+            var connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+            var isTypingReply = activity.CreateReply();
+            isTypingReply.Type = ActivityTypes.Typing;
+            await connector.Conversations.ReplyToActivityAsync(isTypingReply);
         }
 
         private Activity HandleSystemMessage(Activity message)
