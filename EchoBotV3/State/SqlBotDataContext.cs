@@ -24,13 +24,13 @@ namespace EchoBotV3.State
             using (var context = new SqlBotDataContext(connectionString))
             {
                 if (!context.Database.Exists())
-                    throw new ArgumentException("The sql database defined in the connection has not been created. See https://github.com/Microsoft/BotBuilder-Azure/tree/master/CSharp");
+                    throw new ArgumentException("The sql database defined in the connection has not been created.");
 
                 if (context.Database.SqlQuery<int>(@"IF EXISTS (SELECT * FROM sys.tables WHERE name = 'SqlBotDataEntities') 
                                                                     SELECT 1
                                                                 ELSE
                                                                     SELECT 0").SingleOrDefault() != 1)
-                    throw new ArgumentException("The SqlBotDataEntities table has not been created in the database. See https://github.com/Microsoft/BotBuilder-Azure/tree/master/CSharp");
+                    throw new ArgumentException("The SqlBotDataEntities table has not been created in the database.");
             }
         }
 
